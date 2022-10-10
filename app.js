@@ -14,7 +14,6 @@ function getAll(container_id){
         
         
 
-        console.log(child)
         let insideDiv = document.createElement('div')
         insideDiv.className = 'card-body'
 
@@ -36,7 +35,7 @@ function getAll(container_id){
         let a = document.createElement('a')
         a.innerHTML = 'Detalhes'
         a.className = 'btn btn-primary'
-        a.href = `./2.html?id=${heroi.id}`
+        a.href = `./details.html?id=${heroi.id}`
         insideDiv.appendChild(a)
 
         container.appendChild(insideDiv)
@@ -45,8 +44,57 @@ function getAll(container_id){
 };
 
 
-function newPage(){
+function getDetails(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    console.log(urlParams.get('id'))
+    let id = urlParams.get('id')
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET",`https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${id}.json`,false)
+    xhttp.send();
+    let response = JSON.parse(xhttp.responseText)
+    console.log(response)
+
+    let imagem = document.getElementById('img-hero')
+    imagem.src = response.images.md
+    let nome = document.getElementById('nome')
+    nome.innerHTML = response.name
+    let olhos = document.getElementById('olhos')
+    olhos.innerHTML = "Cor dos olhos: "+response.appearance.eyeColor
+    let genero = document.getElementById('genero')
+    genero.innerHTML = "Gênero: "+response.appearance.gender
+    let altura = document.getElementById('altura')
+    altura.innerHTML = "Altura: "+response.appearance.height[1]
+    let raca = document.getElementById('raca')
+    raca.innerHTML = "Raça: "+response.appearance.race
+    let peso = document.getElementById('peso')
+    peso.innerHTML = "Peso: "+response.appearance.weight[1]
+    let profissao = document.getElementById('profissao')
+    profissao.innerHTML = "Profissão: "+response.work.occupation
+
+    let primeiraAparicao = document.getElementById('primeira-aparicao')
+    primeiraAparicao.innerHTML = "Primeira aparição: "+response.biography.firstAppearance
+    let nomeCompleto = document.getElementById('nome-completo')
+    nomeCompleto.innerHTML = "Nome Completo: "+response.biography.fullName
+    let localNascimento = document.getElementById('local-nascimento')
+    localNascimento.innerHTML = "Local de Nascimento: "+response.biography.placeOfBirth
+    let editora = document.getElementById('editora')
+    editora.innerHTML = "Editora: "+response.biography.publisher
+
+    let combate = document.getElementById('combate')
+    combate.innerHTML = "Combate: "+response.powerstats.combat
+    let resistencia = document.getElementById('resistencia')
+    resistencia.innerHTML = "Resistência: "+response.powerstats.durability
+    let inteligencia = document.getElementById('inteligencia')
+    inteligencia.innerHTML = "Inteligência: "+response.powerstats.intelligence
+    let poder = document.getElementById('poder')
+    poder.innerHTML = "Poder: "+response.powerstats.power
+    let velocidade = document.getElementById('velocidade')
+    velocidade.innerHTML = "Velocidade: "+response.powerstats.speed
+    let forca = document.getElementById('forca')
+    forca.innerHTML = "Força: "+response.powerstats.strength
+
+
+    
+
 };
