@@ -78,11 +78,12 @@ header {
 
 .main-nav {
   grid-area: mn;
+  background-color: var(--primary);
+
   padding: 0 30px 0 20px;
 }
 
 .main-nav a {
-  color: var(--light);
   text-decoration: none;
   margin: 5px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
