@@ -53,7 +53,12 @@ function getDetails(){
     xhttp.open("GET",`https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${id}.json`,false)
     xhttp.send();
     let response = JSON.parse(xhttp.responseText)
-    console.log(response)
+
+    let http = new XMLHttpRequest();
+    http.open("GET",`https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/powerstats/${id}.json`,false)
+    http.send();
+    let stats = JSON.parse(http.responseText)
+    console.log(stats)
 
     let imagem = document.getElementById('img-hero')
     imagem.src = response.images.md
@@ -82,17 +87,17 @@ function getDetails(){
     editora.innerHTML = "Editora: "+response.biography.publisher
 
     let combate = document.getElementById('combate')
-    combate.innerHTML = "Combate: "+response.powerstats.combat
+    combate.innerHTML = "Combate: "+stats.combat
     let resistencia = document.getElementById('resistencia')
-    resistencia.innerHTML = "Resistência: "+response.powerstats.durability
+    resistencia.innerHTML = "Resistência: "+stats.durability
     let inteligencia = document.getElementById('inteligencia')
-    inteligencia.innerHTML = "Inteligência: "+response.powerstats.intelligence
+    inteligencia.innerHTML = "Inteligência: "+stats.intelligence
     let poder = document.getElementById('poder')
-    poder.innerHTML = "Poder: "+response.powerstats.power
+    poder.innerHTML = "Poder: "+stats.power
     let velocidade = document.getElementById('velocidade')
-    velocidade.innerHTML = "Velocidade: "+response.powerstats.speed
+    velocidade.innerHTML = "Velocidade: "+stats.speed
     let forca = document.getElementById('forca')
-    forca.innerHTML = "Força: "+response.powerstats.strength
+    forca.innerHTML = "Força: "+stats.strength
 
 
     
