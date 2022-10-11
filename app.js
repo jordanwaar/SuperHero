@@ -10,7 +10,7 @@ function getAll(container_id){
     for(let i in response){
         let heroi = response[i]
         let child = document.createElement('div')
-        child.className = 'card col-lg-3'
+        child.className = 'card col-lg-3 col-md-2 col-sm-1'
         
         
 
@@ -34,7 +34,7 @@ function getAll(container_id){
 
         let a = document.createElement('a')
         a.innerHTML = 'Detalhes'
-        a.className = 'btn btn-primary'
+        a.className = 'btn'
         a.href = `./details.html?id=${heroi.id}`
         insideDiv.appendChild(a)
 
